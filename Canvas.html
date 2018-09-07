@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <script>
+    var interval;
+    var x = 0, y = 0;
+    function draw() {
+      var ctx = document.getElementById("myFirstCanvas").getContext("2d");
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.clearRect(x, y, 50, 50);
+      if(x > document.getElementById("myFirstCanvas").width) {
+        x = 0;
+        y += 50;
+        if(y + 50 > document.getElementById("myFirstCanvas").height) {
+          x = 0;
+          y = 0;
+        }
+      } else {
+        x += 25;
+      }
+      ctx.fillStyle = getRanColor();
+      ctx.fillRect(x, y, 50, 50);
+    }
+    function getRanColor() {
+      var r = 255 * Math.random() | 0, g = 255 * Math.random() | 0, b = 255 * Math.random() | 0;
+      return "rgb(" + r + "," + g + "," + b + ")";
+    }
+    interval = setInterval("draw()", 50);
+  </script>
+</head>
+<body>
+  <canvas id="myFirstCanvas" width="500px" height="500px" style="border: 1px solid red;">
+    1
+  </canvas>
+</body>
+</html>
